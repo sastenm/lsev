@@ -35,8 +35,3 @@ pytest
 ```
 
 ## TODO
-
-- API endpoints for routes
-- WebSocket for live vehicle status
-- Map view with offline tiles
-- Authentication
