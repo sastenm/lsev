@@ -1,11 +1,5 @@
 # Web
 
-Content to add to README.md:
-- Running the app (locally and on Jetson)
-- Environment variables
-
-
-
 FastAPI backend and browser frontend for creating, sending, and monitoring vehicle routes. Map files 
 are cached offline and served to Leaflet on the frontend. 
 
@@ -25,7 +19,7 @@ finish local scripts
 add scripts to run from the Jetson
 ```
 
-## Environment variables
+## Environment variables (proposed, not implemented)
 
 | Variable | Values | Default | Description |
 |---|---|---|---|
@@ -33,6 +27,8 @@ add scripts to run from the Jetson
 | `MAP_TILES_DIR` | Path | TBD | Offline map tiles |
 
 ## Tests
+
+No tests yet
 
 ```bash
 pytest

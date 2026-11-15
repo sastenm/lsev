@@ -1,14 +1,12 @@
 # ROS 2 Workspace
 
-Content to add to README.md:
-- Building the workspace
-- Launching the system
+> **Status: empty workspace.** `src/` contains no packages yet.
 
+The ROS 2 packages for the vehicle will live in `src/`. Proposed: build with `colcon` against ROS 2 Jazzy (not final).
 
+## Candidate packages (placeholders, none exist yet)
 
-All ROS 2 packages for the vehicle. Built with `colcon` against ROS 2 Jazzy (subject to change).
-
-## Packages
+> Nothing below has been created. These names are a starting point
 
 Temporary proposed/example packages
 | Package | Purpose |
@@ -23,19 +21,17 @@ Temporary proposed/example packages
 | `example_1` | Fill in purpose |
 
 ## Build
-```bash
-build scripts here
-```
+
+TODO: no packages to build yet
 
 ## Launch
-```bash
-launch scripts here
-```
 
-## Contributing ROS 2 packages
+TODO: no launch files yet.
 
-1. Create a package folder in src (src/lsev_{package_name}/)
-2. Create a README.md inside new package folder describing:
+## Adding a package
+
+1. Create a package folder in `src` `(src/lsev_{package_name}/)`
+2. Create a `README.md` inside new package folder describing:
     1. What each node does
     2. Its topics, services, and actions (interfaces other packages depend on)
     3. Its main parameters 
