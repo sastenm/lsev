@@ -16,8 +16,34 @@ finish local scripts
 ## Running on the Jetson
 
 ```bash
-add scripts to run from the Jetson
+sudo apt install python3.12-venv
+git pull
+cd web
+python3 -m venv --system-site-packages .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
+
+Check ROS Jazzy is installed
+```bash
+source /opt/ros/jazzy/setup.bash && python -c "import rclpy; print('rclpy ok')"
+```
+
+Run it and test on the Jetson itself
+```bash
+uvicorn backend.main:app --host 0.0.0.0 --port 8000
+curl http://localhost:8000/
+```
+
+Turn on the hotspot and connect
+```bash
+nmcli device | grep wifi                # confirm the name; likely wlP1p1s0
+sudo nmcli device wifi hotspot ifname wlP1p1s0 ssid lsev-jetson password <8+ chars>
+ip addr show wlP1p1s0                   # note the inet address, usually 10.42.0.1
+```
+
+On your laptop:
+- Join lsev-jetson and open http://10.42.0.1:8000
 
 ## Environment variables (proposed, not implemented)
 
