@@ -15,7 +15,7 @@ __pycache__/
 .pytest_cache/
 .eggs/
 *.egg-info/
-./venv/
+.venv/
 venv/
 .pixi/
 
