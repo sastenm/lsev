@@ -19,7 +19,7 @@ finish local scripts
 sudo apt install python3.12-venv
 git pull
 cd web
-python3 -m vevn --system-site-packages .venv
+python3 -m venv --system-site-packages .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
@@ -43,7 +43,7 @@ ip addr show wlP1p1s0                   # note the inet address, usually 10.42.0
 ```
 
 On your laptop:
-- Join lsev-jetson and open http://10.42.0.1.8000
+- Join lsev-jetson and open http://10.42.0.1:8000
 
 ## Environment variables (proposed, not implemented)
 
