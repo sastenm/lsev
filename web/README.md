@@ -14,7 +14,7 @@ sudo apt update && sudo apt install -y python3.12-venv git
 cd ~ && git clone https://github.com/sastenm/lsev.git && cd lsev/web
 python3 -m venv .venv            # no --system-site-packages needed until ROS is installed
 source .venv/bin/activate
-pip install fastapi "uvicorn[standard]" pytest httpx
+pip install -r requirements.txt
 uvicorn backend.main:app --port 8000 --workers 1
 ```
 
