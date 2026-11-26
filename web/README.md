@@ -8,35 +8,43 @@ start, pause, resume, cancel) to the path following.
 
 ## Run locally
 
+Python packages are managed with [uv](https://docs.astral.sh/uv/). `pyproject.toml` lists the direct dependencies and `uv.lock` pins every package, so every machine gets the same versions.
+
 ```bash
-# In WSL (Ubuntu 24.04)
-sudo apt update && sudo apt install -y python3.12-venv git
+# In WSL (Ubuntu 24.04), once
+curl -LsSf https://astral.sh/uv/install.sh | sh     # installs uv to ~/.local/bin
+source $HOME/.local/bin/env
 cd ~ && git clone https://github.com/sastenm/lsev.git && cd lsev/web
-python3 -m venv .venv            # no --system-site-packages needed until ROS is installed
-source .venv/bin/activate
-pip install -r requirements.txt
-uvicorn backend.main:app --port 8000 --workers 1
+
+# Create the venv with the system Python 3.12 (the one ROS uses), then install from the lockfile
+uv venv --python /usr/bin/python3.12 --system-site-packages
+uv sync --locked
+
+uv run pytest
+uv run uvicorn backend.main:app --port 8000 --workers 1
 ```
+
+Adding or changing a dependency: `uv add <package>==<version>` (or `uv add --dev ...` for test-only tools). This updates `pyproject.toml` and `uv.lock`
 
 ## Running on the Jetson
 
 ```bash
-sudo apt install python3.12-venv
-git pull
+curl -LsSf https://astral.sh/uv/install.sh | sh 
+source $HOME/.local/bin/env
+git pull 
 cd web
-python3 -m venv --system-site-packages .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+uv venv --python /usr/bin/python3.12 --system-site-packages   # if .venv doesn't exist yet
+uv sync --locked
 ```
 
-Check ROS Jazzy is installed
+Check ROS Jazzy is installed and visible from venv
 ```bash
-source /opt/ros/jazzy/setup.bash && python -c "import rclpy; print('rclpy ok')"
+source /opt/ros/jazzy/setup.bash && uv run python -c "import rclpy; print('rclpy ok')"
 ```
 
 Run it and test on the Jetson itself
 ```bash
-uvicorn backend.main:app --host 0.0.0.0 --port 8000 --workers 1
+uv run uvicorn backend.main:app --host 0.0.0.0 --port 8000 --workers 1
 curl http://localhost:8000/
 ```
 
@@ -59,10 +67,8 @@ On your laptop:
 
 ## Tests
 
-No tests yet
-
 ```bash
-pytest
+uv run pytest
 ```
 
 ## TODO

@@ -30,6 +30,7 @@ TODO
 | Jetson OS | JetPack 7.2 (Ubuntu 24.04) | Decided |
 | ROS 2 | Jazzy | Decided |
 | Python | 3.12 (Ships with Ubuntu 24.04) | Decided |
+| Python packages | uv (`web/pyproject.toml` + `web/uv.lock`) | Proposed |
 | Development | Windows 11 + WSL (Ubuntu 24.04) | TBD |
 | Microcontroller or Raspberry Pi | TBD | TBD |
 | C++ standard | TBD | TBD |
@@ -54,11 +55,9 @@ If a generated file shows up in `git status` (build output, logs, databases), ad
 
 ### Tests
 
-No tests exist yet. Expected commands once they do
-
 ```bash
 # Web app
-cd web && pytest
+cd web && uv run pytest
 
 # ROS packages
 <insert_testing_commands_here> something like colcon test && colcon test-result --verbose
