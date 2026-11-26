@@ -24,8 +24,8 @@ TODO
 
 ## Platform 
 
-| Component | Version |
-|---|---| --- |
+| Component | Version | Status |
+|---|---|---|
 | NVIDIA Jetson | Orin Nano 8 GB | Decided |
 | Jetson OS | JetPack 7.2 (Ubuntu 24.04) | Decided |
 | ROS 2 | Jazzy | Decided |

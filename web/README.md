@@ -3,14 +3,19 @@
 FastAPI backend and browser frontend for creating, sending, and monitoring vehicle routes. Map files 
 are cached offline and served to Leaflet on the frontend. 
 
-The web app never sends steering or throttle commands. It sends routes and high-level commands (start, 
-pause, cancel) to the (TBD: route manager? path following?). 
+The web app never sends steering or throttle commands. It sends routes and high-level commands (load, 
+start, pause, resume, cancel) to the path following. 
 
 ## Run locally
 
 ```bash
-cd web
-finish local scripts
+# In WSL (Ubuntu 24.04)
+sudo apt update && sudo apt install -y python3.12-venv git
+cd ~ && git clone https://github.com/sastenm/lsev.git && cd lsev/web
+python3 -m venv .venv            # no --system-site-packages needed until ROS is installed
+source .venv/bin/activate
+pip install fastapi "uvicorn[standard]" pytest httpx
+uvicorn backend.main:app --port 8000 --workers 1
 ```
 
 ## Running on the Jetson
@@ -31,7 +36,7 @@ source /opt/ros/jazzy/setup.bash && python -c "import rclpy; print('rclpy ok')"
 
 Run it and test on the Jetson itself
 ```bash
-uvicorn backend.main:app --host 0.0.0.0 --port 8000
+uvicorn backend.main:app --host 0.0.0.0 --port 8000 --workers 1
 curl http://localhost:8000/
 ```
 
