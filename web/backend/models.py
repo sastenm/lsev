@@ -103,8 +103,8 @@ class GateAction(str, Enum):
 
 
 class MissionState(str, Enum):
-    """States Path Following may report (path_back_status). No STALE here, the
-    Command Gate determines whether state is STALE."""
+    """States Path Following may report (path_back_status). No STALE the status
+    relay derives it from message age."""
 
     IDLE = "IDLE"
     READY = "READY"
